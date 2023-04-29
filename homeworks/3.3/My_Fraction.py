@@ -1,4 +1,5 @@
 from multipledispatch import dispatch
+import random
 
 
 class My_Fraction:
@@ -19,9 +20,16 @@ class My_Fraction:
                 self.den = self.den // _
                 self.simplify()
 
+    @staticmethod
+    def random_fraction(mn_value: int, max_value: int) -> My_Fraction:
+        int_part = random.randint(mn_value, max_value)
+        den = random.randint(1, 100)
+        num = random.randint(0, den)
+        return My_Fraction(int_part * den + num, den)
+
     def multiply(self, number: int | My_Fraction) -> My_Fraction:
         ...
-    
+
 
 @dispatch(int)
 def multiply(self, number: int):
